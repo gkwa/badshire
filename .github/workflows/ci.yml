@@ -7,7 +7,26 @@ name: Build & Test
     branches:
     - '*'
 jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ref: ${{ github.head_ref }}
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - run: corepack enable
+    - run: corepack prepare
+    - run: pnpm install
+    - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
+    - run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git diff --quiet || (git add -A && git commit -m "style: format code with prettier" && git push)
   test:
+    needs: format
     name: Build & Test
     strategy:
       matrix:
@@ -17,8 +36,8 @@ jobs:
         - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
-    - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: lts/*
     - run: corepack enable
@@ -32,7 +51,7 @@ jobs:
         pnpm playwright install-deps
     - run: pnpm playwright test
     - if: always()
-      uses: actions/upload-artifact@184d73b71b93c222403b2e7f1ffebe4508014249
+      uses: actions/upload-artifact@v4
       with:
         name: playwright-report-${{ matrix.os }}
         path: playwright-report/
