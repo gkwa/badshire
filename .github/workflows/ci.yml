@@ -11,15 +11,15 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
         with:
           node-version: lts/*
       - run: corepack enable
       - run: corepack prepare
       - run: pnpm install
       - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
-      - uses: test-room-7/action-update-file@v1
+      - uses: test-room-7/action-update-file@8b811502e37e2dcf6e8f80c712cd81e735be6e1c # v1
         with:
           file-path: |
             .github/workflows/ci.yml
