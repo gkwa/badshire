@@ -53,4 +53,4 @@ jobs:
       with:
         message: 'style: format code with prettier'
         add: .
-        github_token: ${{ secrets.GH_PAT3 }}
+        github_token: ${{ secrets.WORKFLOW_TOKEN }}
