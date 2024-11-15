@@ -15,7 +15,7 @@ jobs:
         - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
     - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
       with:
         node-version: lts/*
@@ -39,7 +39,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
       with:
         ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
     - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
