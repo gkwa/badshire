@@ -25,4 +25,4 @@ jobs:
           .github/workflows/ci.yml
           pnpm-lock.yaml
         commit-msg: "style: format code with prettier"
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.WORKFLOW_TOKEN }}
