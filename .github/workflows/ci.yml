@@ -2,27 +2,27 @@ name: Build & Test
 "on":
   push:
     branches:
-    - '*'
+      - "*"
   pull_request:
     branches:
-    - '*'
+      - "*"
 jobs:
   test:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - run: corepack enable
-    - run: corepack prepare
-    - run: pnpm install
-    - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
-    - uses: test-room-7/action-update-file@v1
-      with:
-        file-path: |
-          .github/workflows/ci.yml
-          pnpm-lock.yaml
-        commit-msg: "style: format code with prettier"
-        github-token: ${{ secrets.WORKFLOW_TOKEN }}
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - run: corepack enable
+      - run: corepack prepare
+      - run: pnpm install
+      - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
+      - uses: test-room-7/action-update-file@v1
+        with:
+          file-path: |
+            .github/workflows/ci.yml
+            pnpm-lock.yaml
+          commit-msg: "style: format code with prettier"
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
