@@ -6,10 +6,6 @@ name: Build & Test
   pull_request:
     branches:
     - '*'
-permissions:
-  actions: write
-  contents: write
-  workflows: write
 jobs:
   test:
     name: Build & Test
