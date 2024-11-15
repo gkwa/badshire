@@ -25,7 +25,7 @@ jobs:
     - run: pnpm install
     - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
+      uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'style: format code with prettier'
