@@ -51,6 +51,6 @@ jobs:
     - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
     - uses: EndBug/add-and-commit@43eaafb140bdacd4907fa7384fdd5cd271f58171
       with:
-        message: style: format code with prettier
+        message: 'style: format code with prettier'
         add: .
         github_token: ${{ secrets.GH_PAT3 }}
