@@ -9,51 +9,24 @@ name: Build & Test
 jobs:
   test:
     name: Build & Test
-    strategy:
-      matrix:
-        os:
-        - ubuntu-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.WORKFLOW_TOKEN }}
-        ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-    - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
+    - uses: actions/setup-node@v4
       with:
         node-version: lts/*
     - run: corepack enable
     - run: corepack prepare
-    - run: |
-        node --version
-        pnpm --version
     - run: pnpm install
     - run: |
         pnpm playwright install
         pnpm playwright install-deps
     - run: pnpm playwright test
-    - if: always()
-      uses: actions/upload-artifact@184d73b71b93c222403b2e7f1ffebe4508014249
-      with:
-        name: playwright-report-${{ matrix.os }}
-        path: playwright-report/
-        retention-days: 30
-  format:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
-      with:
-        ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-    - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af
-      with:
-        node-version: lts/*
-    - run: corepack enable
-    - run: corepack prepare
-    - run: pnpm install
     - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
-    - uses: EndBug/add-and-commit@43eaafb140bdacd4907fa7384fdd5cd271f58171
+    - uses: test-room-7/action-update-file@v1
       with:
-        message: 'style: format code with prettier'
-        add: .
-        github_token: ${{ secrets.WORKFLOW_TOKEN }}
+        file-path: |
+          .github/workflows/ci.yml
+          pnpm-lock.yaml
+        commit-msg: "style: format code with prettier"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
