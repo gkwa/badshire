@@ -6,17 +6,11 @@ name: Build & Test
   pull_request:
     branches:
     - '*'
-permissions:
-  contents: write
-  pull-requests: write
-  actions: write
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.head_ref }}
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
@@ -24,15 +18,9 @@ jobs:
     - run: corepack prepare
     - run: pnpm install
     - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
+    - uses: EndBug/add-and-commit@v9
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'style: format code with prettier'
-        title: 'style: format code with prettier'
-        branch: format-code
-        base: ${{ github.head_ref || github.ref_name }}
-        delete-branch: true
+        message: 'style: format code with prettier'
   test:
     needs: format
     name: Build & Test
