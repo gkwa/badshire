@@ -8,7 +8,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "1.48.2",
+    "@playwright/test": "1.48.1",
     "@types/node": "22.9.0"
   },
   "packageManager": "pnpm@9.13.1+sha256.dd98691b127b5d2c4d0605b594e98ec0bcbe5fba86358184de706c3312a4e2ee"

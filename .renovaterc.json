@@ -15,5 +15,10 @@
   ],
   "platformAutomerge": true,
   "prConcurrentLimit": 0,
-  "prHourlyLimit": 0
+  "prHourlyLimit": 0,
+  "postUpgradeTasks": {
+    "commands": ["prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .github/workflows/ci.yml"],
+    "fileFilters": ["**/*.yml"],
+    "executionMode": "update"
+  }
 }
