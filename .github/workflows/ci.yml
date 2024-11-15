@@ -9,7 +9,7 @@ name: Build & Test
 permissions:
   contents: write
   pull-requests: write
-  workflows: write
+  actions: write
 jobs:
   format:
     runs-on: ubuntu-latest
