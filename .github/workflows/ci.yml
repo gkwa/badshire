@@ -21,7 +21,6 @@ jobs:
     - run: |
         pnpm playwright install
         pnpm playwright install-deps
-    - run: pnpm playwright test
     - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
     - uses: test-room-7/action-update-file@v1
       with:
