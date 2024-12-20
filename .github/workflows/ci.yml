@@ -19,7 +19,7 @@ jobs:
       - run: corepack prepare
       - run: pnpm install
       - run: pnpm prettier --ignore-path=.prettierignore --config=.prettierrc.json --write .
-      - uses: test-room-7/action-update-file@8b811502e37e2dcf6e8f80c712cd81e735be6e1c # v1
+      - uses: test-room-7/action-update-file@be6fb6d9c59d5ec4b56542f2e8ad2516a99e3402 # v2
         with:
           file-path: |
             .github/workflows/ci.yml
