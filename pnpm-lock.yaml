@@ -11,8 +11,8 @@ importers:
         specifier: 1.49.1
         version: 1.49.1
       "@types/node":
-        specifier: 22.10.5
-        version: 22.10.5
+        specifier: 22.10.4
+        version: 22.10.4
       prettier:
         specifier: 3.4.2
         version: 3.4.2
@@ -26,10 +26,10 @@ packages:
     engines: { node: ">=18" }
     hasBin: true
 
-  "@types/node@22.10.5":
+  "@types/node@22.10.4":
     resolution:
       {
-        integrity: sha512-F8Q+SeGimwOo86fiovQh8qiXfFEh2/ocYv7tU5pJ3EXMSSxk1Joj5wefpFK2fHTf/N6HKGSxIDBT9f3gCxXPkQ==,
+        integrity: sha512-99l6wv4HEzBQhvaU/UGoeBoCK61SCROQaCCGyQSgX2tEQ3rKkNZ2S7CEWnS/4s1LV+8ODdK21UeyR1fHP2mXug==,
       }
 
   fsevents@2.3.2:
@@ -75,7 +75,7 @@ snapshots:
     dependencies:
       playwright: 1.49.1
 
-  "@types/node@22.10.5":
+  "@types/node@22.10.4":
     dependencies:
       undici-types: 6.20.0
 
